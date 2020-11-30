@@ -1,0 +1,13 @@
+apiVersion: authentication.istio.io/v1alpha1
+kind: Policy
+metadata:
+  name: auth-policy
+  namespace: user16-catalog
+spec:
+  targets:
+  - name: catalog-springboot
+  origins:
+  - jwt:
+      issuer: http://sso-user16-rhsso.apps.cluster-ccnr-c36e.ccnr-c36e.sandbox1073.opentlc.com/auth/realms/istio
+      jwks_uri: http://sso-user16-rhsso.apps.cluster-ccnr-c36e.ccnr-c36e.sandbox1073.opentlc.com/auth/realms/istio/protocol/openid-connect/certs
+  principalBinding: USE_ORIGIN
